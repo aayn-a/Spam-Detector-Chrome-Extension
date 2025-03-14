@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import tensorflow as tf
 from tensorflow import keras
 
@@ -12,9 +12,11 @@ def index():
 
 
 
-@app.route("/detectSpam", methods=["GET"])
+@app.route("/detectSpam", methods=["POST"])
 def use_model():
-    model = tf.keras.models.load_model('spam_detector_model.h5')
+    model = keras.models.load_model('spam_detector_model.h5')
+    input = request.json['text']
+    print(input)
 
 
 if __name__ == '__main__':
