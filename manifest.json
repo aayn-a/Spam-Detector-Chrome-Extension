@@ -1,7 +1,7 @@
 {
-    "name": "test",
+    "name": "Spam Detector",
     "version": "1.0.0",
-    "manifest_version": "3"
-    
+    "manifest_version": "3",
+    "description": "A Chrome extension to detect spam messages."
 
 }

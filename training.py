@@ -4,18 +4,12 @@ from tensorflow import keras
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from preprocessing import preprocess
 
 
-df = pd.read_csv("spam_or_not_spam.csv")
-emails = df["email"].to_numpy().astype(str)
-vectorizer = keras.layers.TextVectorization(max_tokens = 15000, output_sequence_length=50, output_mode="int")
-vectorizer.adapt(emails)
-X = vectorizer(emails)
-X = X.numpy()
-y = df["label"].to_numpy().astype(int)
+X, y = preprocess()
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-
 model = keras.Sequential([
     keras.layers.Input(shape=(50,)),
     keras.layers.Embedding(15000, 32),
