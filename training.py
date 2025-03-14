@@ -20,11 +20,9 @@ def train():
         keras.layers.Dense(1, activation="sigmoid"),
     ])
 
-
-    class_labels = np.unique(y)
-    class_weights = compute_class_weight(class_weight="balanced", classes=class_labels, y=y)
-    class_weight_dict = {i: class_weights[i] for i in range(len(class_weights))}
     optimizer = keras.optimizers.Adam(learning_rate = 0.001)
     model.compile(optimizer=optimizer, loss="binary_crossentropy", metrics=["accuracy"])
     model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=20)
     model.save("spam_detector_model.h5")
+
+
