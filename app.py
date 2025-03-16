@@ -35,4 +35,5 @@ def use_model():
     return jsonify({"prediction": "Spam" if prediction[0] > 0.5 else "Not Spam"})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=os.getenv("PORT", default=5000), debug=False)
+    PORT = int(os.getenv("PORT", 8080))  # Ensure port is an integer
+    app.run(host="0.0.0.0", port=PORT, debug=False)
