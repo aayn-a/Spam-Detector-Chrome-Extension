@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__, template_folder="templates")
-
+CORS(app)
 @app.route('/')
 def index():
     global model
