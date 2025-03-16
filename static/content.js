@@ -1,7 +1,10 @@
 document.getElementById("detectButton").addEventListener("click", async function() {
     const inputText = document.getElementById("inputText").value;
+    const backendURL = window.location.hostname.includes("railway.app") 
+        ? "https://spam-detector-chrome-extension-production.up.railway.app/detectSpam"
+        : "http://127.0.0.1:8080/detectSpam";
     try {
-        let response = await fetch("http://127.0.0.1:8080/detectSpam", {
+        let response = await fetch(backendURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: inputText }),
