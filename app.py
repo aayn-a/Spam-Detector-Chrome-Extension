@@ -3,7 +3,11 @@ import tensorflow as tf
 from tensorflow import keras
 from preprocessing import preprocessWText
 from flask_cors import CORS
+import os
 
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Disable GPU usage
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"  # Disable oneDNN optimizations
 
 
 app = Flask(__name__, template_folder="templates")
@@ -14,7 +18,6 @@ def get_model():
     if model is None:
         model = keras.models.load_model('spam_detector_model.h5')
     return model
-
 
 @app.route('/')
 def index():
