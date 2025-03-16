@@ -1,8 +1,7 @@
 document.getElementById("detectButton").addEventListener("click", async function() {
-    console.log("content.js loaded and running!");
     const inputText = document.getElementById("inputText").value;
     try {
-        let response = await fetch('http://127.0.0.1:5000/detectSpam', {
+        let response = await fetch("https://spam-detector-chrome-extension-production.up.railway.app/detectSpam", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: inputText }),
