@@ -1,7 +1,21 @@
 {
     "name": "Spam Detector",
     "version": "1.0.0",
-    "manifest_version": "3",
-    "description": "A Chrome extension to detect spam messages."
-
+    "manifest_version": 3,
+    "description": "A Chrome extension to detect spam messages.",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "http://127.0.0.1:5000/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/logo.png",
+            "48": "icons/logo.png",
+            "128": "icons/logo.png"
+        }
+    }
 }
