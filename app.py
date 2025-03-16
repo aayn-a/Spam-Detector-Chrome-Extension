@@ -10,7 +10,8 @@ import tensorflow as tf
 from tensorflow import keras
 
 app = Flask(__name__, template_folder="templates")
-model = None
+MODEL_PATH = "spam_detector_model.h5"
+model = keras.models.load_model(MODEL_PATH)
 
 def get_model():
     global model
@@ -28,10 +29,10 @@ def index():
 def use_model():
     input = request.json['text']
     input_vectorized = preprocessWText(input)
-    prediction = get_model().predict(input_vectorized)
+    prediction = model.predict(input_vectorized)
     print(prediction)
     print("Spam" if prediction > 0.5 else "Not Spam")
     return jsonify({"prediction": "Spam" if prediction[0] > 0.5 else "Not Spam"})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
