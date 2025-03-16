@@ -1,6 +1,4 @@
 from flask import Flask, jsonify, render_template, request
-import tensorflow as tf
-from tensorflow import keras
 from preprocessing import preprocessWText
 from flask_cors import CORS
 import os
@@ -8,7 +6,8 @@ import os
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Disable GPU usage
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"  # Disable oneDNN optimizations
-
+import tensorflow as tf
+from tensorflow import keras
 
 app = Flask(__name__, template_folder="templates")
 model = None
