@@ -5,8 +5,7 @@ from preprocessing import preprocessWText
 from flask_cors import CORS
 
 
-tf.config.set_visible_devices([], "GPU")  # Disable GPU use
-tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('CPU')[0], True)
+
 app = Flask(__name__, template_folder="templates")
 model = None
 
