@@ -6,11 +6,9 @@ from flask_cors import CORS
 
 
 app = Flask(__name__, template_folder="templates")
-CORS(app)
+model = keras.models.load_model('spam_detector_model.h5')
 @app.route('/')
 def index():
-    global model
-    model = keras.models.load_model('spam_detector_model.h5')
     return render_template('index.html')
 
 
@@ -25,4 +23,4 @@ def use_model():
     return jsonify({"prediction": "Spam" if prediction[0] > 0.5 else "Not Spam"})
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
