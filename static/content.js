@@ -1,9 +1,9 @@
 document.getElementById("detectButton").addEventListener("click", async function() {
     const inputText = document.getElementById("inputText").value;
-    console.log(window.location.hostname)
+    console.log(`Sending input: ${inputText}`);  // Log the input being sent
     const backendURL = window.location.hostname.includes("railway.app") 
         ? "https://spam-detector-chrome-extension-production.up.railway.app/detectSpam"
-        : "http://127.0.0.1:8080/detectSpam";
+        : "http://127.0.0.1:5000/detectSpam";  // Ensure the local URL is correct
     try {
         let response = await fetch(backendURL, {
             method: 'POST',
@@ -16,6 +16,7 @@ document.getElementById("detectButton").addEventListener("click", async function
         }
 
         let data = await response.json();
+        console.log(`Received response: ${JSON.stringify(data)}`);  // Log the response
         document.getElementById("outputText").innerText = 'Prediction: ' + data.prediction;
     } catch (error) {
         console.error('Error:', error);

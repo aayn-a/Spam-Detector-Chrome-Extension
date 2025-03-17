@@ -30,12 +30,14 @@ def index():
 
 @app.route("/detectSpam", methods=["POST"])
 def use_model():
-    input = request.json['text']
-    input_vectorized = preprocessWText(input)
+    input_text = request.json['text']
+    print(f"Received input: {input_text}")  # Log the received input
+    input_vectorized = preprocessWText(input_text)
     prediction = model.predict(input_vectorized)
-    print(prediction)
-    print("Spam" if prediction > 0.5 else "Not Spam")
-    return jsonify({"prediction": "Spam" if prediction[0] > 0.5 else "Not Spam"})
+    print(f"Prediction: {prediction}")  # Log the prediction
+    result = "Spam" if prediction[0] > 0.5 else "Not Spam"
+    print(f"Result: {result}")  # Log the result
+    return jsonify({"prediction": result})
 
 if __name__ == '__main__':
     PORT = int(os.getenv("PORT", 8080))  # Ensure port is an integer
