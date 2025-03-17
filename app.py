@@ -9,9 +9,12 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"  # Disable oneDNN optimizations
 import tensorflow as tf
 from tensorflow import keras
 
+
 app = Flask(__name__, template_folder="templates")
 MODEL_PATH = "spam_detector_model.h5"
 model = keras.models.load_model(MODEL_PATH)
+
+CORS(app)
 
 def get_model():
     global model
