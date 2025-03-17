@@ -30,7 +30,7 @@ def index():
 
 @app.route("/detectSpam", methods=["POST"])
 def use_model():
-    input_text = request.json['text']
+    input_text = request.json["text"]
     print(f"Received input: {input_text}")  # Log the received input
     input_vectorized = preprocessWText(input_text)
     prediction = model.predict(input_vectorized)
