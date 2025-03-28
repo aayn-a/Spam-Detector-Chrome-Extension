@@ -14,7 +14,10 @@ app = Flask(__name__, template_folder="templates")
 MODEL_PATH = "spam_detector_model.h5"
 model = None
 
-CORS(app)
+
+
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 def get_model():
     global model
