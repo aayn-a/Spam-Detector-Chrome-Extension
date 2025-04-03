@@ -6,7 +6,7 @@ document.getElementById("detectButton").addEventListener("click", async function
         : "http://127.0.0.1:5000/detectSpam";  // Ensure the local URL is correct
     console.log(`Backend URL: ${backendURL}`);  // Log the backend URL
     try {
-        let response = await fetch(backendURL, {  // Use backendURL here
+        let response = await fetch("/detectSpam", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: inputText }),

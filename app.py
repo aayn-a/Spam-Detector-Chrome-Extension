@@ -16,7 +16,7 @@ model = None
 
 
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 
 def get_model():
